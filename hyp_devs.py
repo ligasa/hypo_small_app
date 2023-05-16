@@ -15,10 +15,7 @@ property_type = st.radio("TYP NEMOVITOSTI", ["Dům", "Byt", "Nevím"])
 type_mapping = {"Dům": 0, "Byt": 1, "Nevím": 2}
 selected_type = type_mapping[property_type]
 
-import subprocess
 # Tlačítko pro přesměrování na URL
 if st.button("Spočítat nejlepší nabídky"):
     url = f"https://prodej.e15.cz/hypoteky/srovnani/?loan={loan_value}&type={selected_type}&leadGuid=906154c3-f656-4813-ac4d-a0592205c46d"
-
-    # Otevření URL v prohlížeči
-    subprocess.call(['streamlit', 'run', url])
+    webbrowser.open(url)
