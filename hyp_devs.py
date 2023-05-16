@@ -1,5 +1,4 @@
 import streamlit as st
-import webbrowser
 
 # Vložení úvodního loga
 logo_image = "icon calc/finance_e15_cz_logo.png"  # Nahraďte cestou k úvodnímu logu ve formátu PNG nebo JPG
