@@ -18,4 +18,4 @@ selected_type = type_mapping[property_type]
 # Tlačítko pro přesměrování na URL
 if st.button("Spočítat nejlepší nabídky"):
     url = f"https://prodej.e15.cz/hypoteky/srovnani/?loan={loan_value}&type={selected_type}&leadGuid=906154c3-f656-4813-ac4d-a0592205c46d"
-    webbrowser.open_new_tab(url)
+    webbrowser.open(url)
