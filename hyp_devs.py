@@ -112,6 +112,8 @@ button_html = f'''
 
 st.markdown(button_html, unsafe_allow_html=True)
 
-
+st.markdown("""
+.css-m70y {display:none}
+“”", unsafe_allow_html=True)
 
 
