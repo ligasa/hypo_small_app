@@ -1,5 +1,16 @@
 import streamlit as st
 
+st.markdown(
+    """
+    <style>
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+
 # Vložení úvodního loga
 logo_image = "icon calc/finance_e15_cz_logo.png"  # Nahraďte cestou k úvodnímu logu ve formátu PNG nebo JPG
 st.image(logo_image, width=200)
@@ -54,15 +65,4 @@ button_html = f'''
 '''
 
 st.markdown(button_html, unsafe_allow_html=True)
-
-st.markdown(
-    """
-    <style>
-    #MainMenu {visibility: hidden;}
-    footer {visibility: hidden;}
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
 
