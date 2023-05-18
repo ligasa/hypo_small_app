@@ -54,3 +54,15 @@ button_html = f'''
 '''
 
 st.markdown(button_html, unsafe_allow_html=True)
+
+st.markdown(
+    """
+    <style>
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+
