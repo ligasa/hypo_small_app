@@ -1,13 +1,5 @@
 import streamlit as st
 
-def hide_anchor_link():
-    st.markdown("""
-        <style>
-        .css-15zrgzn {display: none}
-        </style>
-        """, unsafe_allow_html=True)
-
-
 # Vložení úvodního loga
 logo_image = "icon calc/finance_e15_cz_logo.png"  # Nahraďte cestou k úvodnímu logu ve formátu PNG nebo JPG
 st.image(logo_image, width=200)
