@@ -112,5 +112,12 @@ button_html = f'''
 
 st.markdown(button_html, unsafe_allow_html=True)
 
+def hide_anchor_link():
+    st.markdown("""
+        <style>
+        .css-15zrgzn {display: none}
+        </style>
+        """, unsafe_allow_html=True)
+
 
 
