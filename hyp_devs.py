@@ -26,8 +26,10 @@ button_html = f'''
             lineHeight: 1.6;
             width: auto;
             userSelect: none;
-            backgroundColor: #FFFFFF;
-            border: 1px solid rgba(49, 51, 63, 0.2);"
+            backgroundColor: #FA595D;
+            color: #FFFFFF;
+            border: 1px solid rgba(49, 51, 63, 0.2);
+            border-color: #FFFFFF"
         >
             {'Spočítat nejlepší nabídky'}
         </button>
@@ -35,5 +37,7 @@ button_html = f'''
 '''
 
 st.markdown(button_html, unsafe_allow_html=True)
+
+
 
 
