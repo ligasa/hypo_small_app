@@ -5,10 +5,27 @@ logo_image = "icon calc/finance_e15_cz_logo.png"  # Nahraďte cestou k úvodním
 st.image(logo_image, width=200)
 
 # Vstupní pole pro hodnotu hypotéky
-loan_value = st.number_input("HODNOTA HYPOTÉKY (v Kč)", step=1, format="%d")
+st.markdown("**HODNOTA HYPOTÉKY (v Kč)**")
+loan_value = st.text_input("", value="", key="loan_value",label_visibility="collapsed")
+
+# Ověření, zda je vstup číslo
+loan_value = int(loan_value) if loan_value.isdigit() else 0
+
+# Změna barvy vstupního pole
+loan_value_style = """
+    <style>
+        .stTextInput input {
+            background-color: #E0F0FA;
+        }
+    </style>
+"""
+st.markdown(loan_value_style, unsafe_allow_html=True)
 
 # Radio button pro výběr typu nemovitosti
-property_type = st.radio("TYP NEMOVITOSTI", ["Dům", "Byt", "Nevím"])
+st.markdown("**TYP NEMOVITOSTI**")
+property_type = st.radio("TYP NEMOVITOSTI", ["Dům", "Byt", "Nevím"],label_visibility="collapsed")
+
+st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
 
 # Přiřazení číselné hodnoty typu nemovitosti
 type_mapping = {"Dům": 0, "Byt": 1, "Nevím": 2}
@@ -37,6 +54,15 @@ button_html = f'''
 '''
 
 st.markdown(button_html, unsafe_allow_html=True)
+
+hide_streamlit_style = """
+            <style>
+            #MainMenu {visibility: hidden;}
+            footer {visibility: hidden;}
+            </style>
+            """
+st.markdown(hide_streamlit_style, unsafe_allow_html=True) 
+
 
 
 
