@@ -13,7 +13,7 @@ st.markdown(
 
 # Vložení úvodního loga
 logo_image = "icon calc/finance.e15.cz_logo_250_DPI.png"  # Nahraďte cestou k úvodnímu logu ve formátu PNG nebo JPG
-st.image(logo_image, width=250)
+st.image(logo_image)
 
 # Vstupní pole pro hodnotu hypotéky
 st.markdown("**HODNOTA HYPOTÉKY (v Kč)**")
