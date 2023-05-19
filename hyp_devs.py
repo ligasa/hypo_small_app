@@ -36,7 +36,8 @@ selected_type = type_mapping[property_type]
 
 # Funkce pro aktualizaci URL
 def update_url():
-    new_url_link = f"https://prodej.e15.cz/hypoteky/srovnani/?loan={loan_value}&type={selected_type}"
+    global url_link
+    url_link = f"https://prodej.e15.cz/hypoteky/srovnani/?loan={loan_value}&type={selected_type}"
 
 # Při změně hodnoty vstupního pole hypotéky se automaticky aktualizuje URL
 if loan_value:
