@@ -17,14 +17,6 @@ if loan_value.isnumeric():
 else:
     loan_value = 0
 
-# Změna barvy vstupního pole
-loan_value_style = """
-    <style>
-        .stTextInput input {
-            background-color: #E0F0FA;
-        }
-    </style>
-"""
 st.markdown(loan_value_style, unsafe_allow_html=True)
 
 # Radio button pro výběr typu nemovitosti
