@@ -8,11 +8,11 @@ st.image(logo_image)
 st.markdown("**HODNOTA HYPOTÉKY (v Kč)**")
 loan_value = st.text_input("HODNOTA HYPOTÉKY", value="", key="loan_value", label_visibility="collapsed")
 
-# Odstranění mezer z vstupního řetězce
-loan_value = loan_value.replace(" ", "")
-
 # Ověření, zda je vstup číslo
-loan_value = int(loan_value) if loan_value.isdigit() else 0
+try:
+    loan_value = int(loan_value.replace(" ", ""))
+except ValueError:
+    loan_value = 0
 
 # Změna barvy vstupního pole
 loan_value_style = """
