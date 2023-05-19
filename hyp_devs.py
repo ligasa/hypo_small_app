@@ -1,7 +1,7 @@
 import streamlit as st
 
 # Vložení úvodního loga
-logo_image = "icon calc/finance_e15_cz_logo.png"  # Nahraďte cestou k úvodnímu logu ve formátu PNG nebo JPG
+logo_image = "icon calc/finance.e15.cz_logo_500_DPI_edit.png"  # Nahraďte cestou k úvodnímu logu ve formátu PNG nebo JPG
 st.image(logo_image, width=200)
 
 # Vstupní pole pro hodnotu hypotéky
