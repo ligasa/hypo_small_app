@@ -6,7 +6,7 @@ st.image(logo_image, width=200)
 
 # Vstupní pole pro hodnotu hypotéky
 st.markdown("**HODNOTA HYPOTÉKY (v Kč)**")
-loan_value = st.text_input("", value="", key="loan_value", label_visibility="collapsed")
+loan_value = st.text_input("HODNOTA HYPOTÉKY", value="", key="loan_value", label_visibility="collapsed")
 
 # Odstranění mezer z vstupního řetězce
 loan_value = loan_value.replace(" ", "")
@@ -34,34 +34,8 @@ st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', uns
 type_mapping = {"Dům": 0, "Byt": 1, "Nevím": 2}
 selected_type = type_mapping[property_type]
 
-@st.cache_data
-def generate_url(loan_value, selected_type):
-    return f"https://prodej.e15.cz/hypoteky/srovnani/?loan={loan_value}&type={selected_type}"
+url_link = f"https://prodej.e15.cz/hypoteky/srovnani/?loan={loan_value}&type={selected_type}"
 
-url_link = generate_url(loan_value, selected_type)
-
-button_html = f'''
-    <a href="{url_link}">
-        <button style="
-            fontWeight: 400;
-            padding: 0.25rem 0.75rem;
-            borderRadius: 0.25rem;
-            margin: 0px;
-            lineHeight: 1.6;
-            width: auto;
-            userSelect: none;
-            backgroundColor: #FA595D;
-            color: #FFFFFF;
-            border: 1px solid rgba(49, 51, 63, 0.2);
-            border-color: #FFFFFF"
-        >
-            {'Spočítat nejlepší nabídky'}
-        </button>
-    </a>
-'''
-
-# Aktualizace URL při každé změně hodnoty vstupů
-url_link = generate_url(loan_value, selected_type)
 button_html = f'''
     <a href="{url_link}">
         <button style="
