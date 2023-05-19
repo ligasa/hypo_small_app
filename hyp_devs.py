@@ -17,8 +17,6 @@ if loan_value.isnumeric():
 else:
     loan_value = 0
 
-st.markdown(loan_value_style, unsafe_allow_html=True)
-
 # Radio button pro výběr typu nemovitosti
 st.markdown("**TYP NEMOVITOSTI**")
 property_type = st.radio("TYP NEMOVITOSTI", ["Dům", "Byt", "Nevím"], label_visibility="collapsed")
