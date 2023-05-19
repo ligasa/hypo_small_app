@@ -12,7 +12,10 @@ loan_value = st.text_input("HODNOTA HYPOTÉKY", value="", key="loan_value", labe
 loan_value = loan_value.replace(" ", "")
 
 # Ověření, zda je vstup číslo
-loan_value = int(loan_value)
+if loan_value.isnumeric():
+    loan_value = int(loan_value)
+else:
+    loan_value = 0
 
 # Změna barvy vstupního pole
 loan_value_style = """
@@ -31,7 +34,7 @@ property_type = st.radio("TYP NEMOVITOSTI", ["Dům", "Byt", "Nevím"], label_vis
 st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
 
 # Přiřazení číselné hodnoty typu nemovitosti
-type_mapping = {"Dům": 0, "Byt": 1, "Nevím": 2}
+type_mapping = {"Dům": "0", "Byt": "1", "Nevím": "2"}
 selected_type = type_mapping[property_type]
 
 # Funkce pro aktualizaci URL
