@@ -38,31 +38,29 @@ selected_type = type_mapping[property_type]
 def update_url():
     global url_link
     url_link = f"https://prodej.e15.cz/hypoteky/srovnani/?loan={loan_value}&type={selected_type}"
+    
+    button_html = f'''
+        <a href="{url_link}">
+            <button style="
+                fontWeight: 400;
+                padding: 0.25rem 0.75rem;
+                borderRadius: 0.25rem;
+                margin: 0px;
+                lineHeight: 1.6;
+                width: auto;
+                userSelect: none;
+                backgroundColor: #FA595D;
+                color: #FFFFFF;
+                border: 1px solid rgba(49, 51, 63, 0.2);
+                border-color: #FFFFFF"
+            >
+                {'Spočítat nejlepší nabídky'}
+            </button>
+        </a>
+    '''
 
-# Při změně hodnoty vstupního pole hypotéky se automaticky aktualizuje URL
-if loan_value:
+    st.markdown(button_html, unsafe_allow_html=True)
+
+# Při změně hodnoty vstupního pole hypotéky nebo typu nemovitosti se automaticky aktualizuje URL
+if loan_value or property_type:
     update_url()
-
-url_link = f"https://prodej.e15.cz/hypoteky/srovnani/?loan={loan_value}&type={selected_type}"
-
-button_html = f'''
-    <a href="{url_link}">
-        <button style="
-            fontWeight: 400;
-            padding: 0.25rem 0.75rem;
-            borderRadius: 0.25rem;
-            margin: 0px;
-            lineHeight: 1.6;
-            width: auto;
-            userSelect: none;
-            backgroundColor: #FA595D;
-            color: #FFFFFF;
-            border: 1px solid rgba(49, 51, 63, 0.2);
-            border-color: #FFFFFF"
-        >
-            {'Spočítat nejlepší nabídky'}
-        </button>
-    </a>
-'''
-
-st.markdown(button_html, unsafe_allow_html=True)
