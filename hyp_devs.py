@@ -11,6 +11,9 @@ loan_value = st.text_input("HODNOTA HYPOTÉKY", value="", key="loan_value", labe
 # Odstranění mezer z vstupního řetězce
 loan_value = loan_value.replace(" ", "")
 
+# Ověření, zda je vstup číslo
+loan_value = int(loan_value) if loan_value.isdigit() else 0
+
 # Změna barvy vstupního pole
 loan_value_style = """
     <style>
