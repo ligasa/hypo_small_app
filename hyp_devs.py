@@ -3,23 +3,20 @@ import streamlit as st
 # Vložení úvodního loga
 logo_image = "icon calc/finance.e15.cz_logo_500_DPI_edit.png"  # Nahraďte cestou k úvodnímu logu ve formátu PNG nebo JPG
 st.image(logo_image)
-
-# Funkce pro aktualizaci URL
-def update_url():
-    global url_link
-    url_link = f"https://prodej.e15.cz/hypoteky/srovnani/?loan={loan_value}&type={selected_type}"
     
 # Vstupní pole pro hodnotu hypotéky
 st.markdown("**HODNOTA HYPOTÉKY (v Kč)**")
 loan_value = st.text_input("HODNOTA HYPOTÉKY", value="", key="loan_value", label_visibility="collapsed")
 
-# Odstranění mezer z vstupního řetězce
-loan_value = loan_value.replace(" ", "")
+import re
 
-# Ověření, zda je vstup číslo
-if loan_value.isnumeric():
+# Remove non-digit characters from the input value
+loan_value = ''.join(re.findall(r'\d', loan_value))
+
+# Check if the loan_value is a valid number
+try:
     loan_value = int(loan_value)
-else:
+except ValueError:
     loan_value = 0
 
 # Změna barvy vstupního pole
@@ -41,6 +38,11 @@ st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', uns
 # Přiřazení číselné hodnoty typu nemovitosti
 type_mapping = {"Dům": "0", "Byt": "1", "Nevím": "2"}
 selected_type = type_mapping[property_type]
+
+# Funkce pro aktualizaci URL
+def update_url():
+    global url_link
+    url_link = f"https://prodej.e15.cz/hypoteky/srovnani/?loan={loan_value}&type={selected_type}&leadGuid=286cf77a-3b14-451b-a0d8-6456a45076ae"
 
 # Inicializace URL
 update_url()
