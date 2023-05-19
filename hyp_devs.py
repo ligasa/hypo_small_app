@@ -2,7 +2,7 @@ import streamlit as st
 
 # Vložení úvodního loga
 logo_image = "icon calc/finance.e15.cz_logo_500_DPI_edit.png"  # Nahraďte cestou k úvodnímu logu ve formátu PNG nebo JPG
-st.image(logo_image, width=200)
+st.image(logo_image)
 
 # Vstupní pole pro hodnotu hypotéky
 st.markdown("**HODNOTA HYPOTÉKY (v Kč)**")
@@ -33,6 +33,14 @@ st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', uns
 # Přiřazení číselné hodnoty typu nemovitosti
 type_mapping = {"Dům": 0, "Byt": 1, "Nevím": 2}
 selected_type = type_mapping[property_type]
+
+# Funkce pro aktualizaci URL
+def update_url():
+    new_url_link = f"https://prodej.e15.cz/hypoteky/srovnani/?loan={loan_value}&type={selected_type}"
+
+# Při změně hodnoty vstupního pole hypotéky se automaticky aktualizuje URL
+if loan_value:
+    update_url()
 
 url_link = f"https://prodej.e15.cz/hypoteky/srovnani/?loan={loan_value}&type={selected_type}"
 
