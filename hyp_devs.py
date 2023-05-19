@@ -1,23 +1,15 @@
 import streamlit as st
 
-st.markdown(
-    """
-    <style>
-    #MainMenu {visibility: hidden;}
-    footer {visibility: hidden;}
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
-
 # Vložení úvodního loga
-logo_image = "icon calc/finance.e15.cz_logo_500_DPI_edit.png"  # Nahraďte cestou k úvodnímu logu ve formátu PNG nebo JPG
-st.image(logo_image)
+logo_image = "icon calc/finance_e15_cz_logo.png"  # Nahraďte cestou k úvodnímu logu ve formátu PNG nebo JPG
+st.image(logo_image, width=200)
 
 # Vstupní pole pro hodnotu hypotéky
 st.markdown("**HODNOTA HYPOTÉKY (v Kč)**")
 loan_value = st.text_input("", value="", key="loan_value",label_visibility="collapsed")
+
+# Odstranění mezer z vstupního řetězce
+loan_value = loan_value.replace(" ", "")
 
 # Ověření, zda je vstup číslo
 loan_value = int(loan_value) if loan_value.isdigit() else 0
@@ -42,7 +34,11 @@ st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', uns
 type_mapping = {"Dům": 0, "Byt": 1, "Nevím": 2}
 selected_type = type_mapping[property_type]
 
-url_link = f"https://prodej.e15.cz/hypoteky/srovnani/?loan={loan_value}&type={selected_type}"
+@st.cache_data
+def generate_url(loan_value, selected_type):
+    return f"https://prodej.e15.cz/hypoteky/srovnani/?loan={loan_value}&type={selected_type}"
+
+url_link = generate_url(loan_value, selected_type)
 
 button_html = f'''
     <a href="{url_link}">
@@ -65,4 +61,3 @@ button_html = f'''
 '''
 
 st.markdown(button_html, unsafe_allow_html=True)
-
