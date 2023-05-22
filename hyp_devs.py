@@ -4,6 +4,7 @@ import streamlit as st
 def update_url():
     global url_link
     url_link = f"https://prodej.e15.cz/hypoteky/srovnani/?loan={loan_value}&type={selected_type}"
+    st.session_state.selected_type = selected_type
 
 
 # Vložení úvodního loga
@@ -13,8 +14,6 @@ st.image(logo_image)
 # Vstupní pole pro hodnotu hypotéky
 st.markdown("**HODNOTA HYPOTÉKY (v Kč)**")
 loan_value = st.text_input("HODNOTA HYPOTÉKY", value="", key="loan_value", label_visibility="collapsed",on_change = update_url)
-
-
 
 # Odstranění mezer z vstupního řetězce
 loan_value = loan_value.replace(" ", "")
@@ -41,6 +40,9 @@ st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', uns
 # Přiřazení číselné hodnoty typu nemovitosti
 type_mapping = {"Dům": 0, "Byt": 1, "Nevím": 2}
 selected_type = type_mapping[property_type]
+
+# Přiřazení selected_type do session_state
+st.session_state.selected_type = selected_type
 
 url_link = f"https://prodej.e15.cz/hypoteky/srovnani/?loan={loan_value}&type={selected_type}"
 
