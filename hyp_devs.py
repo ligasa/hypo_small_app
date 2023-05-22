@@ -1,12 +1,18 @@
 import streamlit as st
 
+
+def update_url():
+    global url_link
+    url_link = f"https://prodej.e15.cz/hypoteky/srovnani/?loan={loan_value}&type={selected_type}"
+
+
 # Vložení úvodního loga
 logo_image = "icon calc/finance.e15.cz_logo_500_DPI_edit.png"  # Nahraďte cestou k úvodnímu logu ve formátu PNG nebo JPG
 st.image(logo_image)
 
 # Vstupní pole pro hodnotu hypotéky
 st.markdown("**HODNOTA HYPOTÉKY (v Kč)**")
-loan_value = st.text_input("HODNOTA HYPOTÉKY", value="", key="loan_value", label_visibility="collapsed")
+loan_value = st.text_input("HODNOTA HYPOTÉKY", value="", key="loan_value", label_visibility="collapsed",on_change = update_url)
 
 # Odstranění mezer z vstupního řetězce
 loan_value = loan_value.replace(" ", "")
@@ -26,7 +32,7 @@ st.markdown(loan_value_style, unsafe_allow_html=True)
 
 # Radio button pro výběr typu nemovitosti
 st.markdown("**TYP NEMOVITOSTI**")
-property_type = st.radio("TYP NEMOVITOSTI", ["Dům", "Byt", "Nevím"], label_visibility="collapsed")
+property_type = st.radio("TYP NEMOVITOSTI", ["Dům", "Byt", "Nevím"], label_visibility="collapsed",on_change=update_url)
 
 st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
 
