@@ -64,4 +64,6 @@ button_html = f'''
 
 st.markdown(button_html, unsafe_allow_html=True)
 
-st.write(st.session_state)
+# Zobrazení stavu sezení
+st.write("Hodnota hypotéky:", st.session_state.loan_value)
+st.write("Typ nemovitosti:", st.session_state.selected_type)
