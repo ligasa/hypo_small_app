@@ -64,3 +64,4 @@ button_html = f'''
 
 st.markdown(button_html, unsafe_allow_html=True)
 
+st.write(st.session_state)
