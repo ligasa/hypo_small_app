@@ -1,7 +1,11 @@
 import streamlit as st
+import time
+
+loan_value = ""
 
 def update_url():
     global url_link
+    time.sleep(0.5)  # Zpoždění 0.5 sekundy
     url_link = f"https://prodej.e15.cz/hypoteky/srovnani/?loan={loan_value}&type={selected_type}"
     st.session_state.selected_type = selected_type
 
@@ -11,10 +15,10 @@ st.image(logo_image)
 
 # Vstupní pole pro hodnotu hypotéky
 st.markdown("**HODNOTA HYPOTÉKY (v Kč)**")
-loan_value = st.text_input("HODNOTA HYPOTÉKY", value="", key="loan_value", label_visibility="collapsed", on_change=update_url)
+loan_value_input = st.text_input("HODNOTA HYPOTÉKY", value=loan_value, key="loan_value", label_visibility="collapsed")
 
 # Odstranění mezer z vstupního řetězce
-loan_value = loan_value.replace(" ", "")
+loan_value = loan_value_input.replace(" ", "")
 
 # Ověření, zda je vstup číslo
 loan_value = int(loan_value) if loan_value.isdigit() else 0
@@ -31,7 +35,7 @@ st.markdown(loan_value_style, unsafe_allow_html=True)
 
 # Radio button pro výběr typu nemovitosti
 st.markdown("**TYP NEMOVITOSTI**")
-property_type = st.radio("TYP NEMOVITOSTI", ["Dům", "Byt", "Nevím"], label_visibility="collapsed", on_change=update_url)
+property_type = st.radio("TYP NEMOVITOSTI", ["Dům", "Byt", "Nevím"], label_visibility="collapsed")
 st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
 
 # Přiřazení číselné hodnoty typu nemovitosti
