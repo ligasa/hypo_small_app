@@ -1,4 +1,5 @@
 import streamlit as st
+import time
 
 
 def update_url():
