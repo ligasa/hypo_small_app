@@ -6,12 +6,12 @@ def update_url():
     st.session_state.selected_type = selected_type
 
 # Vložení úvodního loga
-logo_image = "icon calc/finance.e15.cz_logo_500_DPI_edit.png"
+logo_image = "icon calc/finance.e15.cz_logo_500_DPI_edit.png"  # Nahraďte cestou k úvodnímu logu ve formátu PNG nebo JPG
 st.image(logo_image)
 
 # Vstupní pole pro hodnotu hypotéky
 st.markdown("**HODNOTA HYPOTÉKY (v Kč)**")
-loan_value = st.text_input("HODNOTA HYPOTÉKY", value="", key="loan_value", label_visibility="collapsed")
+loan_value = st.text_input("HODNOTA HYPOTÉKY", value="", key="loan_value", label_visibility="collapsed", on_change=update_url)
 
 # Odstranění mezer z vstupního řetězce
 loan_value = loan_value.replace(" ", "")
@@ -31,7 +31,7 @@ st.markdown(loan_value_style, unsafe_allow_html=True)
 
 # Radio button pro výběr typu nemovitosti
 st.markdown("**TYP NEMOVITOSTI**")
-property_type = st.radio("TYP NEMOVITOSTI", ["Dům", "Byt", "Nevím"], label_visibility="collapsed")
+property_type = st.radio("TYP NEMOVITOSTI", ["Dům", "Byt", "Nevím"], label_visibility="collapsed", on_change=update_url)
 st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
 
 # Přiřazení číselné hodnoty typu nemovitosti
@@ -41,8 +41,12 @@ selected_type = type_mapping[property_type]
 # Přiřazení selected_type do session_state
 st.session_state.selected_type = selected_type
 
-# Aktualizace URL a tlačítka pouze tehdy, když je hodnota hypotéky vyplněna
-if str(loan_value).strip() != "":
+
+import streamlit as st
+
+# ...
+
+if loan_value > 0:
     url_link = f"https://prodej.e15.cz/hypoteky/srovnani/?loan={loan_value}&type={selected_type}"
     button_html = f'''
         <a href="{url_link}">
@@ -66,6 +70,4 @@ if str(loan_value).strip() != "":
     '''
     st.markdown(button_html, unsafe_allow_html=True)
 else:
-    st.write("Zadejte hodnotu hypotéky pro výpočet")
-
-st.write(st.session_state)
+    st.markdown("**Zadejte hodnotu hypotéky pro výpočet**")
