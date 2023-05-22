@@ -14,6 +14,8 @@ st.image(logo_image)
 st.markdown("**HODNOTA HYPOTÉKY (v Kč)**")
 loan_value = st.text_input("HODNOTA HYPOTÉKY", value="", key="loan_value", label_visibility="collapsed",on_change = update_url)
 
+
+
 # Odstranění mezer z vstupního řetězce
 loan_value = loan_value.replace(" ", "")
 
@@ -64,6 +66,4 @@ button_html = f'''
 
 st.markdown(button_html, unsafe_allow_html=True)
 
-# Zobrazení stavu sezení
-st.write("Hodnota hypotéky:", st.session_state.loan_value)
-st.write("Typ nemovitosti:", st.session_state.selected_type)
+st.write(st.session_state)
