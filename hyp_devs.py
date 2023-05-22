@@ -1,25 +1,18 @@
 import streamlit as st
-import re
 
 # Vložení úvodního loga
 logo_image = "icon calc/finance.e15.cz_logo_500_DPI_edit.png"  # Nahraďte cestou k úvodnímu logu ve formátu PNG nebo JPG
 st.image(logo_image)
 
-# Funkce pro aktualizaci URL
-def update_url():
-    global url_link
-    url_link = f"https://prodej.e15.cz/hypoteky/srovnani/?loan={loan_value}&type={selected_type}"
-
 # Vstupní pole pro hodnotu hypotéky
 st.markdown("**HODNOTA HYPOTÉKY (v Kč)**")
-loan_value_input = st.text_input("HODNOTA HYPOTÉKY", value="", key="loan_value", label_visibility="collapsed")
+loan_value = st.text_input("HODNOTA HYPOTÉKY", value="", key="loan_value", label_visibility="collapsed")
 
-# Initialize loan_value to None
-loan_value = None
+# Odstranění mezer z vstupního řetězce
+loan_value = loan_value.replace(" ", "")
 
-# Parse the input value and update loan_value
-if loan_value_input:
-    loan_value = int(''.join(re.findall(r'\d', loan_value_input)))
+# Ověření, zda je vstup číslo
+loan_value = int(loan_value) if loan_value.isdigit() else 0
 
 # Změna barvy vstupního pole
 loan_value_style = """
@@ -38,13 +31,11 @@ property_type = st.radio("TYP NEMOVITOSTI", ["Dům", "Byt", "Nevím"], label_vis
 st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
 
 # Přiřazení číselné hodnoty typu nemovitosti
-type_mapping = {"Dům": "0", "Byt": "1", "Nevím": "2"}
+type_mapping = {"Dům": 0, "Byt": 1, "Nevím": 2}
 selected_type = type_mapping[property_type]
 
-# Inicializace URL
-update_url()
+url_link = f"https://prodej.e15.cz/hypoteky/srovnani/?loan={loan_value}&type={selected_type}"
 
-# Tlačítko
 button_html = f'''
     <a href="{url_link}">
         <button style="
@@ -66,3 +57,17 @@ button_html = f'''
 '''
 
 st.markdown(button_html, unsafe_allow_html=True)
+
+
+import streamlit as st
+from streamlit.components.v1 import html
+
+def open_page(url):
+    open_script= """
+        <script type="text/javascript">
+            window.open('%s', '_blank').focus();
+        </script>
+    """ % (url)
+    html(open_script)
+
+st.button('Open link', on_click=open_page, args=(f"https://prodej.e15.cz/hypoteky/srovnani/?loan={loan_value}&type={selected_type}",))
