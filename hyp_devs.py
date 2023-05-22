@@ -58,16 +58,3 @@ button_html = f'''
 
 st.markdown(button_html, unsafe_allow_html=True)
 
-
-import streamlit as st
-from streamlit.components.v1 import html
-
-def open_page(url):
-    open_script= """
-        <script type="text/javascript">
-            window.open('%s', '_blank').focus();
-        </script>
-    """ % (url)
-    html(open_script)
-
-st.button('Open link', on_click=open_page, args=(f"https://prodej.e15.cz/hypoteky/srovnani/?loan={loan_value}&type={selected_type}",))
